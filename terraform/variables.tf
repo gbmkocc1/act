@@ -4,12 +4,12 @@ variable "region" {
 
 variable "aws_access_key" {
   type = string
-  default = "aws_access_key"  # 👉 Replace in GitHub secrets
+  default = "AWS_ACCESS_KEY_ID"  # 👉 Replace in GitHub secrets
 }
 
 variable "aws_secret_key" {
   type = string
-  default = "aws_secret_key" # 👉 Replace in GitHub secrets
+  default = "AWS_SECRET_ACCESS_KEY" # 👉 Replace in GitHub secrets
 }
 
 variable "key_name" {
