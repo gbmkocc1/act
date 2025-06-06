@@ -5,31 +5,25 @@ on:
     branches:
       - main
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
-  terraform:
-    name: Apply Terraform
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+      - name: Configure AWS credentials using OIDC
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          terraform_version: 1.8.2
+          role-to-assume: arn:aws:iam::gbmkocc1:role/GitHubOIDCRole
+          aws-region: us-east-1
 
       - name: Terraform Init
         run: terraform init
-        working-directory: ./terraform
-
-      - name: Terraform Plan
-        run: terraform plan
-        working-directory: ./terraform
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
-        working-directory: ./terraform
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
