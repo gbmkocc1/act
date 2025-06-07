@@ -43,10 +43,11 @@ resource "aws_iam_role_policy" "github_oidc_policy" {
           "kms:GetKeyRotationStatus",
           "kms:ListAliases",
           "kms:ListKeys",
-          "kms:ListResourceTags",       # ✅ ADD THIS LINE
+          "kms:ListResourceTags",
           "kms:Decrypt",
           "kms:Encrypt",
-          "kms:GenerateDataKey*"
+          "kms:GenerateDataKey*",
+          "kms:PutKeyPolicy"              # ✅ FINAL KMS PERMISSION
         ],
         Resource = "*"
       }
