@@ -14,5 +14,5 @@ variable "aws_secret_key" {
 
 variable "key_name" {
   description = "Name of the SSH key pair"
-  default     = "github-keypair"   # 👉 Replace with your real AWS key pair name
+  default     = "newkey"   # 👉 Replace with your real AWS key pair name
 }
