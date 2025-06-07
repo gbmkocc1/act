@@ -20,9 +20,10 @@ resource "aws_security_group" "bastion_sg" {
 resource "aws_instance" "bastion" {
   ami                         = "ami-0c02fb55956c7d316"  # Amazon Linux 2 in us-east-1
   instance_type               = "t2.micro"
-  key_name                    = var.key_name             # 👈 Provide SSH key name
+  key_name                    = var.key_name
   vpc_security_group_ids      = [aws_security_group.bastion_sg.id]
-  
+  iam_instance_profile        = aws_iam_instance_profile.bastion_profile.name  # ✅ FIXED
+
   tags = {
     Name = "bastion-host"
   }
