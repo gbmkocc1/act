@@ -32,14 +32,16 @@ resource "aws_iam_role_policy" "github_oidc_policy" {
       {
         Effect = "Allow",
         Action = [
+          "iam:*",
           "eks:*",
-          "iam:PassRole",
           "ec2:*",
           "s3:*",
-          "sts:AssumeRole"
+          "logs:*",
+          "sts:*"
         ],
         Resource = "*"
       }
     ]
   })
 }
+
