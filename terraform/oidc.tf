@@ -37,11 +37,16 @@ resource "aws_iam_role_policy" "github_oidc_policy" {
           "ec2:*",
           "s3:*",
           "logs:*",
-          "sts:*"
+          "sts:*",
+          "kms:DescribeKey",
+          "kms:ListAliases",
+          "kms:ListKeys",
+          "kms:Decrypt",
+          "kms:Encrypt",
+          "kms:GenerateDataKey*"
         ],
         Resource = "*"
       }
     ]
   })
 }
-
