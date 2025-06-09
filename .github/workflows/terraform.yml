@@ -39,3 +39,12 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
+
+      - name: Get OIDC Token
+        id: id_token
+        uses: actions/github-script@v6
+        with:
+          script: return await core.getIDToken();
+
+      - name: Print OIDC Token
+        run: echo "${{ steps.id_token.outputs.token }}"

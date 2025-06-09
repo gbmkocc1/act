@@ -5,6 +5,8 @@
 .terraform.lock.hcl
 crash.log
 terraform.tfvars
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
 
 # 🔐 Sensitive files
 .pem
@@ -36,3 +38,4 @@ test-results/
 
 # ✅ Ignore plan files if you commit `.tfplan`
 .tfplan
+
