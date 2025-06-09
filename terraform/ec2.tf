@@ -1,6 +1,7 @@
 resource "aws_security_group" "bastion_sg" {
   name        = "bastion-sg"
   description = "Allow SSH"
+  vpc_id      = module.vpc.vpc_id
 
   ingress {
     from_port   = 22
@@ -18,13 +19,15 @@ resource "aws_security_group" "bastion_sg" {
 }
 
 resource "aws_instance" "bastion" {
-  ami                         = "ami-0c02fb55956c7d316"  # Amazon Linux 2 in us-east-1
-  instance_type               = "t2.micro"
+ami           = data.aws_ami.amazon_linux.id  # Amazon Linux 2 in recent region
+  instance_type               = "t3.micro"
   key_name                    = var.key_name
+  subnet_id                   = module.vpc.public_subnets[0]
+  associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.bastion_sg.id]
   iam_instance_profile        = aws_iam_instance_profile.bastion_profile.name  # ✅ FIXED
 
   tags = {
-    Name = "bastion-host"
+    Name = "AmazonLinuxDynamicAMI"
   }
 }

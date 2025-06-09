@@ -12,14 +12,14 @@ resource "aws_iam_role" "github_oidc_role" {
         Action = "sts:AssumeRoleWithWebIdentity",
         Condition = {
           StringLike = {
-            "token.actions.githubusercontent.com:sub": "repo:gbmkocc1/act:*"
+            "token.actions.githubusercontent.com:sub": "repo:gbmkocc1:*"
           }
         }
       }
     ]
   })
 
-  description = "IAM Role for GitHub Actions in gbmkocc1/act repo"
+  description = "IAM Role for GitHub Actions in gbmkocc1"
 }
 
 resource "aws_iam_role_policy" "github_oidc_policy" {

@@ -1,4 +1,4 @@
 provider "aws" {
-  region = var.region
+  region = var.aws_region
   # Credentials are pulled from environment or ~/.aws/credentials
 }
